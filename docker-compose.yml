@@ -1,0 +1,18 @@
+version: '3.5'
+
+services:
+  test-db:
+    image: postgres:11
+    container_name: test-db
+    command: postgres
+    environment:
+      - POSTGRES_DB=testdb
+      - POSTGRES_USER=dbuser
+      - POSTGRES_PASSWORD=dbpass
+      - POSTGRES_PORT=5432
+      - POSTGRES_HOST=test-db
+    tty: true
+    ports:
+      - 5432:5432
+    expose:
+      - 5432
