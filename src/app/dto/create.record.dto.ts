@@ -1,4 +1,4 @@
-export class CreatePersonDto {
+export class CreateRecordDto {
   name: string;
   age: number;
 }

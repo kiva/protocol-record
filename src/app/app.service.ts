@@ -1,8 +1,8 @@
 import { Injectable, INestApplication, Logger } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Person } from '../db/entity/person';
+import { Record } from '../db/entity/record';
 import { Repository } from 'typeorm';
-import { CreatePersonDto } from './dto/create.person.dto';
+import { CreateRecordDto } from './dto/create.record.dto';
 
 /**
  * The Root Application Service
@@ -11,8 +11,8 @@ import { CreatePersonDto } from './dto/create.person.dto';
 export class AppService {
 
   constructor(
-    @InjectRepository(Person)
-    private readonly personRepo: Repository<Person>
+    @InjectRepository(Record)
+    private readonly recordRepo: Repository<Record>
   ) {}
 
   /**
@@ -23,19 +23,19 @@ export class AppService {
     app.useLogger(logger);
   }
 
-  public async getPerson(name: string): Promise<Person> {
-    const results = await this.personRepo.find({name});
+  public async getRecord(name: string): Promise<Record> {
+    const results = await this.recordRepo.find({name});
     if (results.length === 0) {
-      return Promise.reject(`Could not find a person named ${name}`);
+      return Promise.reject(`Could not find a record named ${name}`);
     } else {
       return results[0];
     }
   }
 
-  public async createPerson(dto: CreatePersonDto): Promise<Person> {
-    const newPerson = new Person();
-    newPerson.name = dto.name;
-    newPerson.age = dto.age;
-    return this.personRepo.save(newPerson);
+  public async createRecord(dto: CreateRecordDto): Promise<Record> {
+    const newRecord = new Record();
+    newRecord.name = dto.name;
+    newRecord.age = dto.age;
+    return this.recordRepo.save(newRecord);
   }
 }

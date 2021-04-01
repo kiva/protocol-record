@@ -1,7 +1,7 @@
 import { Get, Controller, Param, Post, Body } from '@nestjs/common';
 import { AppService } from './app.service';
-import { Person } from '../db/entity/person';
-import { CreatePersonDto } from './dto/create.person.dto';
+import { Record } from '../db/entity/record';
+import { CreateRecordDto } from './dto/create.record.dto';
 
 /**
  * Base route is just for various health check endpoints
@@ -16,13 +16,13 @@ export class AppController {
     return 'pong';
   }
 
-  @Get('person/:name')
-  getPerson(@Param('name') name: string): Promise<Person> {
-    return this.appService.getPerson(name);
+  @Get('record/:name')
+  getRecord(@Param('name') name: string): Promise<Record> {
+    return this.appService.getRecord(name);
   }
 
-  @Post('person')
-  createPerson(@Body() createPersonDto: CreatePersonDto): Promise<Person> {
-    return this.appService.createPerson(createPersonDto);
+  @Post('record')
+  createRecord(@Body() createRecordDto: CreateRecordDto): Promise<Record> {
+    return this.appService.createRecord(createRecordDto);
   }
 }

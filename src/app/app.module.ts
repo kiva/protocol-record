@@ -3,11 +3,11 @@ import { OrmConfig } from '../ormconfig';
 import { AppService } from './app.service';
 import { AppController } from './app.controller';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { Person } from '../db/entity/person';
+import { Record } from '../db/entity/record';
 
 @Module({
   imports: [
-    TypeOrmModule.forFeature([Person]),
+    TypeOrmModule.forFeature([Record]),
     OrmConfig()
   ],
   controllers: [AppController],
