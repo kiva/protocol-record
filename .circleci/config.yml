@@ -28,7 +28,7 @@ jobs:
       - run:
           name: Check prod container is running
           command: |
-            npm run healthcheck
+            ./script/healthcheck.sh http://localhost:3003/healthz
       - run:
           name: run integration tests
           command: |
