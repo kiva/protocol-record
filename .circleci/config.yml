@@ -1,0 +1,87 @@
+version: 2.1
+
+orbs:
+  node: circleci/node@3.0.0
+  docker: circleci/docker@1.3.0
+  kube-orb: circleci/kubernetes@0.11.1
+  helm: circleci/helm@1.2.0
+
+jobs:
+
+  integration-test:
+    machine:
+      docker_layer_caching: true
+      image: ubuntu-1604:201903-01
+    steps:
+      - checkout
+      - run:
+          name: Build docker compose
+          command: |
+            docker-compose build
+      - run:
+          name: Start docker compose and wait for readiness
+          command: |
+            docker-compose up -d
+            sleep 15
+            docker-compose logs
+      - run:
+          name: Check prod container is running
+          command: |
+            npm run healthcheck
+      - run:
+          name: run integration tests
+          command: |
+            npm run integration
+
+  dev-deploy:
+      - kube-orb/install
+      - kube-orb/install-kubeconfig:
+          kubeconfig: KUBECONFIG_BASE64
+      - aws-eks/install-aws-iam-authenticator
+      - helm/install-helm-client:
+          version: v3.2.4
+      - run:
+          name: Deploy helm chart
+          command: |
+              helm upgrade --install record record/helm-config --set image.tag=$(./script/semver.sh)
+
+  trigger-dev-test:
+      - run:
+          name: Triggering the dev test (TODO)
+          command: |
+              echo "TODO: trigger the dev test in another repository"
+              echo "TODO: wait for external test to complete?"
+
+workflows:
+  test-build-deploy:
+    jobs:
+      - node/test:
+          filters: # run for all branches AND tags
+            tags:
+              only: /.*/
+      - integration-test
+          filters: # run for all branches AND tags
+            tags:
+              only: /.*/
+      - docker/publish:
+          requires:
+            - node/test
+            - build-and-test
+          filters: # only run on main
+            branches:
+              only:
+                - main
+      - dev-deploy:
+          requires:
+            - docker/publish
+          filters: # only run on main
+            branches:
+              only:
+                - main
+      - trigger-dev-test:
+          requires:
+            - dev-deploy
+          filters: # only run on main
+            branches:
+              only:
+                - main
