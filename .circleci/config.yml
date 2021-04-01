@@ -59,7 +59,7 @@ workflows:
           filters: # run for all branches AND tags
             tags:
               only: /.*/
-      - integration-test
+      - integration-test:
           filters: # run for all branches AND tags
             tags:
               only: /.*/
@@ -67,6 +67,8 @@ workflows:
           requires:
             - node/test
             - build-and-test
+          image: kivaprotocol/record
+          tag: $(./script/semver.sh)
           filters: # only run on main
             branches:
               only:
