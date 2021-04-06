@@ -1,7 +1,4 @@
-import { Get, Controller, Param, Post, Body } from '@nestjs/common';
-import { AppService } from './app.service';
-import { Record } from '../db/entity/record';
-import { CreateRecordDto } from './dto/create.record.dto';
+import { Get, Controller } from '@nestjs/common';
 
 /**
  * Base route is just for various health check endpoints
@@ -9,20 +6,11 @@ import { CreateRecordDto } from './dto/create.record.dto';
 @Controller()
 export class AppController {
 
-  constructor(private readonly appService: AppService) {}
+  constructor() {}
 
-  @Get('ping')
+  @Get('healthz')
   ping(): string {
-    return 'pong';
+    return 'OK';
   }
 
-  @Get('record/:name')
-  getRecord(@Param('name') name: string): Promise<Record> {
-    return this.appService.getRecord(name);
-  }
-
-  @Post('record')
-  createRecord(@Body() createRecordDto: CreateRecordDto): Promise<Record> {
-    return this.appService.createRecord(createRecordDto);
-  }
 }
