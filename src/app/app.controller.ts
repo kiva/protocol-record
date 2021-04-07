@@ -6,11 +6,19 @@ import { Get, Controller } from '@nestjs/common';
 @Controller()
 export class AppController {
 
-  constructor() {}
+  @Get()
+  base(): string {
+      return process.env.SERVICE;
+  }
+
+  @Get('ping')
+  ping(): string {
+      return 'pong';
+  }
 
   @Get('healthz')
-  ping(): string {
-    return 'OK';
+  healthz(): string {
+      return 'OK';
   }
 
 }

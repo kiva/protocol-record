@@ -7,22 +7,22 @@ export class CreateRecordTable1611685474343 implements MigrationInterface {
     public async up(queryRunner: QueryRunner): Promise<void> {
         await queryRunner.query(`
             CREATE TABLE IF NOT EXISTS record (
-                id VARCHAR(100) NOT NULL PRIMARY KEY,
+                id SERIAL PRIMARY KEY,
                 entityData jsonb,
-                connection_id VARCHAR(100),
-                schema_id VARCHAR(100),
-                credential_definition_id VARCHAR(100),
-                credential_exchange_id VARCHAR(100),
-                state VARCHAR(100),
-                acapy_created_at VARCHAR(100),
-                thread_id VARCHAR(100),
-                acapy_updated_at VARCHAR(100),
-                revocation_id VARCHAR(100),
-                credential_id VARCHAR(100),
-                revoc_reg_id VARCHAR(100),
+                connection_id VARCHAR,
+                schema_id VARCHAR,
+                credential_definition_id VARCHAR,
+                credential_exchange_id VARCHAR,
+                state VARCHAR,
+                acapy_created_at TIMESTAMPTZ,
+                thread_id VARCHAR,
+                acapy_updated_at TIMESTAMPTZ,
+                revocation_id VARCHAR,
+                credential_id VARCHAR,
+                revoc_reg_id VARCHAR,
                 is_revoked boolean,
-                revocation_reason VARCHAR(100),
-                revocation_date VARCHAR(100)
+                revocation_reason VARCHAR,
+                revocation_date TIMESTAMPTZ
             );`
         );
     }
