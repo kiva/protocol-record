@@ -29,14 +29,14 @@ export class Record {
   @Column({ type: 'varchar' })
   public state: string;
 
-  @Column({ type: 'timestamptz', name: 'acapy_created_at' })
-  public created_at: string;
+  @Column({ type: 'timestamp with time zone', name: 'acapy_created_at' })
+  public created_at: Date;
 
   @Column({ type: 'varchar' })
   public thread_id: string;
 
-  @Column({ type: 'timestamptz', name: 'acapy_updated_at' })
-  public updated_at: string;
+  @Column({ type: 'timestamp with time zone', name: 'acapy_updated_at' })
+  public updated_at: Date;
 
   @Column({ type: 'varchar' })
   public revocation_id: string;
@@ -53,7 +53,7 @@ export class Record {
   @Column({ type: 'varchar' })
   public revocation_reason: string;
 
-  @Column({ type: 'timestamptz' })
-  public revocation_date: string;
+  @Column({ type: 'timestamp with time zone' })
+  public revocation_date: Date;
 
 }
