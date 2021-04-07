@@ -6,22 +6,22 @@ import { CreateRecordDto } from './dto/create.record.dto';
 /**
  * Base route is just for various health check endpoints
  */
-@Controller()
+@Controller('record')
 export class RecordController {
 
   constructor(private readonly recordService: RecordService) {}
 
-  @Get('records')
+  @Get()
   getRecords(): Promise<Record[]> {
     return this.recordService.getRecords();
   }
 
-  @Post('record')
+  @Post()
   createRecord(@Body() createRecordDto: CreateRecordDto): Promise<Record> {
     return this.recordService.createRecord(createRecordDto);
   }
 
-  @Post('record/:id')
+  @Post(':id')
   updateRecord(@Param('id') id: string, @Body() createRecordDto: CreateRecordDto): Promise<Record> {
     return this.recordService.updateRecord(id, createRecordDto);
   }

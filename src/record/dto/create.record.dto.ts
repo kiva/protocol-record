@@ -8,13 +8,13 @@ export class CreateRecordDto {
   credential_definition_id: string;
   credential_exchange_id: string;
   state: string;
-  created_at: string;
+  created_at: Date;
   thread_id: string;
-  updated_at: string;
+  updated_at: Date;
   revocation_id: string;
   credential_id: string;
   revoc_reg_id: string;
   is_revoked: boolean;
   revocation_reason: string;
-  revocation_date: string;
+  revocation_date: Date;
 }
