@@ -1,12 +1,12 @@
 import { MigrationInterface, QueryRunner } from 'typeorm';
 
-export class CreateRecordTable1611685474343 implements MigrationInterface {
+export class CreateCredentialTable1611685474343 implements MigrationInterface {
 
     // TODO: add NOT NULL to column def where appropriate
 
     public async up(queryRunner: QueryRunner): Promise<void> {
         await queryRunner.query(`
-            CREATE TABLE IF NOT EXISTS record (
+            CREATE TABLE IF NOT EXISTS credential (
                 id SERIAL PRIMARY KEY,
                 entityData jsonb,
                 connection_id VARCHAR,
@@ -29,7 +29,7 @@ export class CreateRecordTable1611685474343 implements MigrationInterface {
 
     public async down(queryRunner: QueryRunner): Promise<void> {
         await queryRunner.query(`
-            DROP TABLE IF EXISTS record;
+            DROP TABLE IF EXISTS credential;
         `);
     }
 

@@ -1,7 +1,7 @@
 import { EmployeeCredentialDto } from "./employee.credential.dto";
 import { GovernmentCredentialDto } from "./government.credential.dto";
 
-export class CreateRecordDto {
+export class CreateCredentialDto {
   entityData: EmployeeCredentialDto | GovernmentCredentialDto;
   connection_id: string;
   schema_id: string;
