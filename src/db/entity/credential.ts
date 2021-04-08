@@ -1,12 +1,12 @@
 import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
-import { EmployeeCredentialDto } from 'record/dto/employee.credential.dto';
-import { GovernmentCredentialDto } from 'record/dto/government.credential.dto';
+import { EmployeeCredentialDto } from 'credential/dto/employee.credential.dto';
+import { GovernmentCredentialDto } from 'credential/dto/government.credential.dto';
 
 
   // TODO: add nullable: false where appropriate
 
 @Entity()
-export class Record {
+export class Credential {
 
   @PrimaryGeneratedColumn()
   public id: number;

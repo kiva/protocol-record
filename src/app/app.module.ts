@@ -2,11 +2,11 @@ import { Module } from '@nestjs/common';
 import { AppService } from './app.service';
 import { AppController } from './app.controller';
 import { OrmConfig } from '../ormconfig';
-import { RecordModule } from '../record/record.module';
+import { CredentialModule } from '../credential/credential.module';
 
 @Module({
   imports: [
-    RecordModule,
+    CredentialModule,
     OrmConfig(),
   ],
   controllers: [AppController],
