@@ -8,13 +8,13 @@
 replicaCount: 1
 
 image:
-  repository: kivaprotocol/record
+  repository: kivaprotocol/credential
   tag: latest # this will be populated by CD
   pullPolicy: Always
 
-nameOverride: "record"
-fullnameOverride: "record"
-secrets: "record"
+nameOverride: "credential"
+fullnameOverride: "credential"
+secrets: "credential"
 
 strategy:
   type: "RollingUpdate"
@@ -56,7 +56,7 @@ ingress:
 storage:
   enabled: false
   volume: todo-volume-name # we may also need a helm template for the PVC / StorageClass / Volume
-  path: /tmp/record-files
+  path: /tmp/credential-files
 
 # By default services should disable this option as it is used to give the pod
 # elevated k8s privileges
