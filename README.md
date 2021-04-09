@@ -1,1 +1,1 @@
-# protocol-record
+# protocol-credential

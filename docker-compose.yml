@@ -1,12 +1,12 @@
 version: '3.5'
 
 services:
-  protocol-record:
+  protocol-credential:
     env_file:
       - ./.env
     build: ./
-    image: protocol-record
-    container_name: protocol-record
+    image: protocol-credential
+    container_name: protocol-credential
     working_dir: /www
     ports:
       - "3003:3003"

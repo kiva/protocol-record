@@ -48,7 +48,7 @@ jobs:
       - run:
           name: Deploy helm chart
           command: |
-              helm upgrade --install record helm-config --set image.tag=$(./script/semver.sh)
+              helm upgrade --install credential helm-config --set image.tag=$(./script/semver.sh)
 
   trigger-dev-test:
     machine:
@@ -76,7 +76,7 @@ workflows:
           requires:
             - node/test
             - integration-test
-          image: kivaprotocol/record
+          image: kivaprotocol/credential
           tag: $(./script/semver.sh)
           filters: # only run on main
             branches:
