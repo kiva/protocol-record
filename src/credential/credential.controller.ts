@@ -23,13 +23,13 @@ export class CredentialController {
 
   @Post(':id')
   updateCredential(@Param('id') id: string, @Body() createCredentialDto: CreateCredentialDto): Promise<Credential> {
-    return this.credentialService.updateCredential(id, createCredentialDto);
+    return this.credentialService.updateCredential(+id, createCredentialDto);
   }
 
   // Note: CreateCredentialDto is used here but only the revocation specific fields are required and used by this method.
   @Post('revoke/:id')
   revokeCredential(@Param('id') id: string, @Body() revokeCredentialDto: CreateCredentialDto): Promise<Credential> {
-    return this.credentialService.revokeCredential(id, revokeCredentialDto);
+    return this.credentialService.revokeCredential(+id, revokeCredentialDto);
   }
 
 }

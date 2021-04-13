@@ -51,25 +51,27 @@ export class CredentialService {
       newCredential.entityData['signature~attach'] = null;
     }
 
-    // TODO: confirm that the return value has the id field populated
     return this.credentialRepo.save(newCredential);
   }
 
-  public async revokeCredential(id: string, dto: CreateCredentialDto): Promise<Credential> {
+  public async revokeCredential(id: number, dto: CreateCredentialDto): Promise<Credential> {
     let revUpdate = {
+      id: id,
       revocation_date: dto.revocation_date,
       revocation_id: dto.revocation_id,
       revocation_reason: dto.revocation_reason
     }
 
-    this.credentialRepo.update(id, revUpdate);
+    // TODO: in a DB transaction get the existing credential record and then revoke it (See aries key guardian for example)
+    //
     // TODO: confirm the update is successful and return the updated object to the frontend
     return null;
   }
 
-  public async updateCredential(id: string, dto: CreateCredentialDto): Promise<Credential> {
+  public async updateCredential(id: number, dto: CreateCredentialDto): Promise<Credential> {
     const newCredential = new Credential();
 
+    newCredential.id = id;
     newCredential.connection_id = dto.connection_id;
     newCredential.created_at = dto.created_at;
     newCredential.credential_definition_id = dto.credential_definition_id;
@@ -98,7 +100,7 @@ export class CredentialService {
       newCredential.entityData['signature~attach'] = null;
     }
 
-    this.credentialRepo.update(id, newCredential);
+    this.credentialRepo.save(newCredential);
     // TODO: confirm the update is successful and return the updated object to the frontend
     return null
   }
