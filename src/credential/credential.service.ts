@@ -65,9 +65,7 @@ export class CredentialService {
       cred.revocation_id = dto.revocation_id;
       cred.revocation_reason = dto.revocation_reason;
 
-      return entityManager.save(Credential, {
-        ...cred
-      })
+      return entityManager.save(Credential, cred);
     });
   }
 
