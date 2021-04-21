@@ -3,6 +3,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Credential } from '../db/entity/credential';
 import { Repository, EntityManager } from 'typeorm';
 import { CreateCredentialDto } from './dto/create.credential.dto';
+import { RevokeCredentialDto } from './dto/revoke.credential.dto';
 
 /**
  * The Root Application Service
@@ -29,11 +30,7 @@ export class CredentialService {
     newCredential.credential_definition_id = dto.credential_definition_id;
     newCredential.credential_exchange_id = dto.credential_exchange_id;
     newCredential.credential_id = dto.credential_id;
-    newCredential.is_revoked = dto.is_revoked;
     newCredential.revoc_reg_id = dto.revoc_reg_id;
-    newCredential.revocation_date = dto.revocation_date;
-    newCredential.revocation_id = dto.revocation_id;
-    newCredential.revocation_reason = dto.revocation_reason;
     newCredential.schema_id = dto.schema_id;
     newCredential.state = dto.state;
     newCredential.thread_id = dto.thread_id;
@@ -55,12 +52,13 @@ export class CredentialService {
     return this.credentialRepo.save(newCredential);
   }
 
-  public async revokeCredential(id: number, dto: CreateCredentialDto): Promise<Credential> {
+  public async revokeCredential(id: number, dto: RevokeCredentialDto): Promise<Credential> {
     return this.credentialRepo.manager.transaction(async (entityManager: EntityManager) => {
       let cred: Credential = await entityManager.findOne(Credential, {id});
       if (!cred) {
         throw('Credential not found in database with id: ' + id)
       }
+      cred.is_revoked = true;
       cred.revocation_date = dto.revocation_date;
       cred.revocation_id = dto.revocation_id;
       cred.revocation_reason = dto.revocation_reason;
