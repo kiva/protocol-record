@@ -22,7 +22,6 @@ export class CredentialController {
     return this.credentialService.createCredential(createCredentialDto);
   }
 
-  // Note: CreateCredentialDto is used here but only the revocation specific fields are required and used by this method.
   @Post('revoke/:id')
   revokeCredential(@Param('id') id: string, @Body() revokeCredentialDto: RevokeCredentialDto): Promise<Credential> {
     return this.credentialService.revokeCredential(+id, revokeCredentialDto);
