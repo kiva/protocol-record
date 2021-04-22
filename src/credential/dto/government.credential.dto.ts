@@ -18,6 +18,8 @@ export interface GovernmentCredentialDto {
     fatherLastName: string;
     occupation: string;
     maritalStatus: string;
+    'photo~attach': string;
     photoURL: string; //  // store the photo in s3 and store a link to it in postgres
+    'signature~attach': string;
     signatureURL: string; //  // store the signature image in s3 and store a link to it in postgres
 }

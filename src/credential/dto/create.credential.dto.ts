@@ -14,7 +14,4 @@ export class CreateCredentialDto {
   revocation_id: string;
   credential_id: string;
   revoc_reg_id: string;
-  is_revoked: boolean;
-  revocation_reason: string;
-  revocation_date: Date;
 }
