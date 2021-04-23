@@ -21,9 +21,9 @@ strategy:
 
 service:
   type: ClusterIP
-  port: 6543
-  containerPort: 6543
-  targetPort: 6543
+  port: 3003
+  containerPort: 3003
+  targetPort: 3003
   portName: http
 
 resources:
