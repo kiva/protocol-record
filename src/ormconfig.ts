@@ -8,10 +8,10 @@ export function OrmConfig(): DynamicModule {
     migrationsRun: true,
     entities: ['src/db/entity/**/*.ts', 'dist/db/entity/**/*.js'],
     migrations: ['dist/db/migration/**/*.js'],
-    host: 'test-db',
-    username: 'dbuser',
-    password: 'dbpass',
-    database: 'testdb',
+    host: process.env.POSTGRES_HOST,
+    username: process.env.POSTGRES_USER,
+    password: process.env.POSTGRES_PASSWORD,
+    database: process.env.POSTGRES_DB,
     port: 5432,
   });
 }
