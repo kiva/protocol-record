@@ -12,7 +12,7 @@ export class Credential {
   public id: number;
 
   @Column({ type: 'jsonb' })
-  public entityData: EmployeeCredentialDto | GovernmentCredentialDto;
+  public entity_data: EmployeeCredentialDto | GovernmentCredentialDto;
 
   @Column({ type: 'varchar' })
   public connection_id: string;

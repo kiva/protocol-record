@@ -36,17 +36,17 @@ export class CredentialService {
     newCredential.thread_id = dto.thread_id;
     newCredential.updated_at = dto.updated_at;
 
-    newCredential.entityData = dto.entityData;
+    newCredential.entity_data = dto.entityData;
 
-    if ( "photo~attach" in newCredential.entityData ) {
+    if ( "photo~attach" in newCredential.entity_data ) {
       // TODO: store photo image in s3 compatible bucket
-      newCredential.entityData.photoURL = 'photo.found.TODO.create.image.storage.backend';
-      newCredential.entityData['photo~attach'] = null;
+      newCredential.entity_data.photoURL = 'photo.found.TODO.create.image.storage.backend';
+      newCredential.entity_data['photo~attach'] = null;
     }
-    if ( "signature~attach" in newCredential.entityData ) {
+    if ( "signature~attach" in newCredential.entity_data ) {
       // TODO: store signature image in s3 compatible bucket
-      newCredential.entityData.signatureURL = 'signature.found.TODO.create.image.storage.backend';
-      newCredential.entityData['signature~attach'] = null;
+      newCredential.entity_data.signatureURL = 'signature.found.TODO.create.image.storage.backend';
+      newCredential.entity_data['signature~attach'] = null;
     }
 
     return this.credentialRepo.save(newCredential);
