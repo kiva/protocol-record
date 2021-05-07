@@ -22,9 +22,10 @@ export class CredentialController {
     return this.credentialService.createCredential(createCredentialDto);
   }
 
+  // id = credential_exchange_id
   @Post('revoke/:id')
   revokeCredential(@Param('id') id: string, @Body() revokeCredentialDto: RevokeCredentialDto): Promise<Credential> {
-    return this.credentialService.revokeCredential(+id, revokeCredentialDto);
+    return this.credentialService.revokeCredential(id, revokeCredentialDto);
   }
 
 }
