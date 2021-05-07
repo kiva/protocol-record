@@ -52,11 +52,11 @@ export class CredentialService {
     return this.credentialRepo.save(newCredential);
   }
 
-  public async revokeCredential(id: number, dto: RevokeCredentialDto): Promise<Credential> {
+  public async revokeCredential(credential_exchange_id: string, dto: RevokeCredentialDto): Promise<Credential> {
     return this.credentialRepo.manager.transaction(async (entityManager: EntityManager) => {
-      let cred: Credential = await entityManager.findOne(Credential, {id});
+      let cred: Credential = await entityManager.findOne(Credential, {credential_exchange_id});
       if (!cred) {
-        throw('Credential not found in database with id: ' + id)
+        throw('Credential not found in database with credential exchange id: ' + credential_exchange_id)
       }
       cred.is_revoked = true;
       cred.revocation_date = dto.revocation_date;
