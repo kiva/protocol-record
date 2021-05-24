@@ -1,16 +1,16 @@
 import { MigrationInterface, QueryRunner } from 'typeorm';
 
-export class RenameEntityDataColumn1620316796632 implements MigrationInterface {
+export class AddIssuanceColumn1621521432354 implements MigrationInterface {
 
     public async up(queryRunner: QueryRunner): Promise<void> {
         await queryRunner.query(`
-            ALTER TABLE credential RENAME entityData to entity_data;
+            ALTER TABLE credential ADD COLUMN institution;
         `);
     }
 
     public async down(queryRunner: QueryRunner): Promise<void> {
         await queryRunner.query(`
-            ALTER TABLE credential RENAME entity_data to entityData;
+            ALTER TABLE credential DROP COLUMN institution;
         `);
     }
 

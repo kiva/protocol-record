@@ -1,5 +1,5 @@
-import { EmployeeCredentialDto } from "./employee.credential.dto";
-import { GovernmentCredentialDto } from "./government.credential.dto";
+import { EmployeeCredentialDto } from './employee.credential.dto';
+import { GovernmentCredentialDto } from './government.credential.dto';
 
 export class CreateCredentialDto {
   entityData: EmployeeCredentialDto | GovernmentCredentialDto;
@@ -11,7 +11,7 @@ export class CreateCredentialDto {
   created_at: Date;
   thread_id: string;
   updated_at: Date;
-  revocation_id: string;
   credential_id: string;
   revoc_reg_id: string;
+  institution: string;
 }
