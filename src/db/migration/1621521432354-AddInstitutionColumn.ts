@@ -1,10 +1,10 @@
 import { MigrationInterface, QueryRunner } from 'typeorm';
 
-export class AddIssuanceColumn1621521432354 implements MigrationInterface {
+export class AddInstitutionColumn1621521432354 implements MigrationInterface {
 
     public async up(queryRunner: QueryRunner): Promise<void> {
         await queryRunner.query(`
-            ALTER TABLE credential ADD COLUMN institution;
+            ALTER TABLE credential ADD COLUMN institution VARCHAR;
         `);
     }
 
