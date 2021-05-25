@@ -21,6 +21,9 @@ export class Credential {
   public schema_id: string;
 
   @Column({ type: 'varchar' })
+  public institution: string;
+
+  @Column({ type: 'varchar' })
   public credential_definition_id: string;
 
   @Column({ type: 'varchar' })
