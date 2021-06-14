@@ -77,7 +77,7 @@ workflows:
             - node/test
             - integration-test
           image: kivaprotocol/credential
-          tag: $(./script/semver.sh)
+          tag: $(./script/semver.sh),latest
           filters: # only run on main
             branches:
               only:
