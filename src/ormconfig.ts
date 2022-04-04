@@ -1,7 +1,7 @@
 import { DynamicModule } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 
-export function OrmConfig(): DynamicModule {
+export const OrmConfig = (): DynamicModule => {
   return TypeOrmModule.forRoot({
     type: 'postgres',
     synchronize: false,
@@ -14,4 +14,4 @@ export function OrmConfig(): DynamicModule {
     database: process.env.POSTGRES_DB,
     port: 5432,
   });
-}
+};
